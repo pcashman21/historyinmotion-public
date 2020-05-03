@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<script src="third_party/require.js"></script>
+<script language="javascript">
+requirejs.config({
+    baseUrl: 'js',
+    paths: {
+        jquery: '../third_party/jquery-1.10.2',
+    }
+});
+
+requirejs(['storage', 'jquery'], function(storage) {
+    $('#debugLocalStorageButton').click(function () {
+        var lsKey = document.getElementById('localStorageKey').value;
+        var lsVal = document.getElementById('localStorageValue').value;
+        localStorage.setItem(lsKey, lsVal);
+        var verifyVal = localStorage.getItem(lsKey);
+        alert("Set key '" + lsKey + "' to value with length " + verifyVal.length + " out of a desired " + lsVal.length);
+    });
+
+    $('#localStorageLengthButton').click(function () {
+        var lsKey = document.getElementById('localStorageLenKey').value;
+        if (lsKey == "") {
+        	alert("Cannot use a blank local storage key");
+        	return;
+        }
+        var verifyVal = localStorage.getItem(lsKey);
+        if (verifyVal == null) {
+        	alert("There is no key named " + lsKey);
+        	return;
+        }
+        alert("Got key '" + lsKey + "' as value with length " + verifyVal.length);
+        alert(verifyVal.substr(verifyVal.length-100));
+    });
+
+    $('#saveScenarioButton').click(function () {
+        storage.saveScenarioJson_Async(document.getElementById('userName').value,
+                                       document.getElementById('password').value,
+                                       document.getElementById('scenarioName').value,
+                                       document.getElementById('scenarioData').value)
+            .done(function() { alert('Saved!'); });
+    });
+
+    $("#getScenarioListButton").click(function () {
+        storage.getScenarioList_Async(document.getElementById('getScenarioListUserName').value,
+                                      document.getElementById('getScenarioListPassword').value)
+            .done(function(result) { alert(result); });
+    });
+
+});
+</script>
+
+<body>
+<h1>Set Localstorage</h1>
+Key:<br>
+<input type="text" id="localStorageKey"><br>
+<br>
+Value:<br>
+<textarea id="localStorageValue" rows="10" cols="80">
+</textarea><br>
+<button type="button" id="debugLocalStorageButton">Set!</button>
+
+<h1>Get Localstorage Length</h1>
+<input type="text" id="localStorageLenKey"><br>
+<button type="button" id="localStorageLengthButton">Check Length!</button>
+<div id="stuff"></div>
+
+<h1>Save Scenario</h1>
+Username <input type="text" id="userName"><br>
+Password <input type="password" id="password"><br>
+Scenario name <input type="text" id="scenarioName"><br>
+<br>
+Scenario data<br>
+<textarea id="scenarioData" rows="10" cols="80">
+</textarea><br>
+<button type="button" id="saveScenarioButton">Save Scenario!</button>
+
+<h1>Get Scenario List</h1>
+Username <input type="text" id="getScenarioListUserName"><br>
+Password <input type="password" id="getScenarioListPassword"><br>
+<button type="button" id="getScenarioListButton">Get Scenario List!</button>
+
+</body>
+</html>

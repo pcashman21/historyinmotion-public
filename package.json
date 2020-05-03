@@ -1,0 +1,42 @@
+{
+  "name": "historyinmotion",
+  "version": "2.0.0",
+  "description": "History in Motion",
+  "scripts": {
+    "start": "node -r esm server.js",
+    "test": "node client/js/historical_time_tests.js",
+    "prepare": "node -r esm optimize.js"
+  },
+  "dependencies": {
+    "adm-zip": "^0.4.14",
+    "async": "^3.2.0",
+    "cookie-parser": "^1.4.4",
+    "cookie-session": "^1.4.0",
+    "cors": "^2.8.5",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "graceful-fs": "^4.2.3",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.4.4",
+    "passport": "^0.4.1",
+    "passport-google-oauth": "^2.0.0",
+    "pg": "^7.18.2"
+  },
+  "engines": {
+    "node": "12.16.x",
+    "npm": "6.14.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jleen/historyinmotion"
+  },
+  "author": "Paul Cashman and John Leen",
+  "license": "UNLICENSED",
+  "gitHead": "90fd58e343c29e54fc1d4e19036595500b2bdc21",
+  "devDependencies": {
+    "requirejs": "^2.3.6",
+    "shelljs": "^0.8.3",
+    "standard": "^14.3.1"
+  }
+}

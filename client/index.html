@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title id="browser_title">History in Motion</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/him.css" type="text/css" />
+   	<script data-main="js/main.js" src="third_party/require.js"></script>
+</head>
+<body>
+	<div class="framework" id="TabIndependent_Framework">
+		<span id='logo'><a href="http://www.historyinmotion.org" target="_blank"><img src="icons/logo_HiMnewWebG30x57_031114.gif" /></a></span>
+		<span id='scenario_name'></span>
+		<div id="enclose-menu">	
+			<ul id="css3menu1" class="topmenu">
+			<li class="topfirst"><a href="#" style="height:17px;line-height:17px;"><span>File</span></a>
+				<ul>
+					<li><a href="#">Open...</a></li>
+					<li><a href="#">Icons...</a></li>
+					<li><a href="#">Map...</a></li>
+					<li><a href="#">Permalink</a></li>
+					<li><a href="#">Refresh</a></li>
+					<li><a href="#">Save As...</a></li>
+					<li><a href="#">Save</a></li>
+				</ul>
+			</li>
+		<li class="topmenu"><a href="#" style="height:17px;line-height:17px;"><span>New</span></a>
+			<ul>
+				<li><a href="#">Scenario...</a></li>
+				<li><a href="#">Point Event...</a></li>
+				<li><a href="#">Path Event...</a></li>
+				<li><a href="#">Area Event...</a></li>
+				<li><a href="#">Timeline...</a></li>
+			</ul>
+		</li>
+		<li class="topmenu"><a href="#" style="height:17px;line-height:17px;"><span>Edit</span></a>
+			<ul>
+				<li><a href="#">Event...</a></li>
+				<li><a href="#">Scenario...</a></li>
+				<li><a href="#">Timeline...</a></li>
+				<li><a href="#">User</a></li>
+			</ul>
+		</li>
+		<li class="topmenu"><a href="#" style="height:17px;line-height:17px;"><span>Logout</span></a>
+		</li>
+		<li class="toplast"><a href="#" style="height:17px;line-height:17px;">Help</a>
+			<ul>
+				<li><a href="https://www.youtube.com/watch?v=iqyRyVP7HKM" target="_blank">Quick start intro</a></li>
+				<li><a href="https://www.youtube.com/watch?v=1LJ_Di2KgSE" target="_blank">Logging in</a></li>
+				<li><a href="#" class="topmenu">Create and edit scenarios</a>
+					<ul>
+						<li><a href="https://www.youtube.com/watch?v=6jIWHtjimH0" target="_blank"><span>Create a scenario</span></a></li>
+						<li><a href="https://www.youtube.com/watch?v=vDp-bvT0vkw" target="_blank"><span>Work with scenarios</span></a></li>
+					</ul>
+				</li>
+				<li><a href="#" class="topmenu">Create and edit events</a>
+					<ul>
+						<li><a href="https://www.youtube.com/watch?v=2NcoduCv-XU" target="_blank">Point event creation: location and title</a></li>
+						<li><a href="https://www.youtube.com/watch?v=1liuh3kNVJM" target="_blank">Area event creation</a></li>
+						<li><a href="https://www.youtube.com/watch?v=QiCPhSwpFes" target="_blank">Path event creation</a></li>
+						<li><a href="https://www.youtube.com/watch?v=QK6Wg3t8OcE" target="_blank">Setting event start and end times</a></li>
+						<li><a href="https://www.youtube.com/watch?v=64zohjmg5JU" target="_blank">Add description to event</a></li>
+						<li><a href="https://www.youtube.com/watch?v=O4QdDpeOF-E" target="_blank">Event creation errors</a></li>
+						<li><a href="https://www.youtube.com/watch?v=WhBDAE9OEuM" target="_blank">Event editing and deletion</a></li>
+						<li><a href="https://www.youtube.com/watch?v=0qc8oGDFLLs" target="_blank">Refreshing a scenario after editing</a></li>
+					</ul>
+				</li>
+				<li><a href="https://www.youtube.com/watch?v=Z3hUqgL-TaI" target="_blank"><span>Timeline creation and editing</span></a></li>
+				<li><a href="#" class="topmenu">Explore scenarios and events</a>
+					<ul>
+						<li><a href="https://www.youtube.com/watch?v=YrtemXlQfzU" target="_blank">Navigating through time</a></li>
+						<li><a href="https://www.youtube.com/watch?v=QNAdVYm8Zfo" target="_blank">Changing time display format</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	</div>
+		<button id='toolbar_button' type='button' title='Open the toolbar'></button>
+	</div>
+	<div class="framework" id="MapTab_Framework">
+		<form id="Select_Timeline_Form">
+			Timeline:
+			<select id="Select_Timeline">  
+			</select>
+			<button id='play_button' type='button'></button>
+			<div id="slider-box" display="inline"></div>
+			<span id='current_time'></span>
+		</form>
+	</div>
+	<div title="Format Historical Dates" id="hd_formatter_div">
+	Check date elements you want to include.  Drag and drop elements in the order you wish them to appear.
+		<div id="sortable_placeholder">
+		</div>
+		<br>Attach format to current: &nbsp
+		<input type="radio" name="format_attachment_option" value="timeline" id="format_attachment_option_timeline" />Timeline &nbsp<input type="radio" name="format_attachment_option" value="scenario" id="format_attachment_option_scenario" />Scenario<br>
+	</div>
+	<div id="day_of_week_div" class="moveable">
+		<input  id="show_day_of_week" type="checkbox" value="day_of_week">Day of Week
+		<div class="separator_div">
+			<label for="separator_day_of_week" class="hd_formatter_label">Separator: </label>
+			<select id="separator_day_of_week">
+				<option value=", ">Comma</option>
+				<option value=" ">(blank)</option>
+			</select>
+		</div>
+	</div>
+	<div id="month_div" class="moveable">
+		<input id="show_month" type="checkbox" value="month">Month
+		<div class="separator_div">
+			<label for="separator_month" class="hd_formatter_label">Separator: </label>
+			<select id="separator_month">
+				<option value=", ">Comma</option>
+				<option value=" ">(blank)</option>
+				<option value="/">Slash</option>
+			</select>
+		</div>
+		<br><i>What style of month?</i><br>
+		<input type="radio" name="month_style_option" value="name" id="name" />Name &nbsp<input type="radio" name="month_style_option" value="numeric" id="numeric" />Number<br>
+	</div>
+	<div id="date_div" class="moveable">
+		<input id="show_date" type="checkbox" value="date">Date
+		<div class="separator_div">
+			<label for="separator_date" class="hd_formatter_label">Separator: </label>
+			<select id="separator_date">
+				<option value=", ">Comma</option>
+				<option value=" ">(blank)</option>
+				<option value="/">Slash</option>
+			</select>
+		</div>
+	</div>
+	<div id="year_div" class="moveable">
+		<input id="show_year" type="checkbox" value="year">Year
+		<div class="separator_div">
+			<label for="separator_year" class="hd_formatter_label">Separator: </label>
+			<select id="separator_year">
+				<option value=", ">Comma</option>
+				<option value=" ">(blank)</option>
+				<option value="/">Slash</option>
+			</select>
+		</div>
+	</div>
+	<div id="era_div" class="moveable">
+		<input id="show_era" type="checkbox" value="era">Era
+		<div class="separator_div">
+			<label for="separator_era" class="hd_formatter_label">Separator: </label>
+			<select id="separator_era">
+				<option value=", ">Comma</option>
+				<option value=" ">(blank)</option>
+			</select>
+		</div>
+		<br><i>What style of era?</i><br>
+		<input type="radio" name="era_style_option" value="BCE_CE" id="BCE_CE" />BCE/CE &nbsp<input type="radio" name="era_style_option" value="BC_AD" id="BC_AD" />BC/AD<br>
+	</div>
+	<div id="hour_div" class="moveable">
+		<input id="show_hour" type="checkbox" value="hour">Hour
+		<div class="separator_div">
+			<label for="separator_hour" class="hd_formatter_label">Separator: </label>
+			<select id="separator_hour">
+				<option value=":">Colon (:)</option>
+				<option value=" ">(blank)</option>
+				<option value="">(none)</option>
+			</select>
+		</div>
+	</div>
+	<div id="minute_div" class="moveable">
+		<input id="show_minute" type="checkbox" value="minute">Minute
+		<div class="separator_div">
+			<label for="separator_minute" class="hd_formatter_label">Separator: </label>
+			<select id="separator_minute">
+				<option value=":">Colon (:)</option>
+				<option value=" ">(blank)</option>
+			</select>
+		</div>
+	</div>
+	<div id="second_div" class="moveable">
+		<input id="show_second" type="checkbox" value="second">Second
+		<div class="separator_div">
+			<label for="separator_second" class="hd_formatter_label">Separator: </label>
+			<select id="separator_second">
+				<option value=" ">(blank)</option>
+			</select>
+		</div>
+	</div>
+	<div id="AMPM_div" class="moveable">
+		<input id="show_AMPM" type="checkbox" value="AMPM">AM/PM 
+		<div class="separator_div">
+			<label for="separator_AMPM" class="hd_formatter_label">Separator: </label>
+			<select id="separator_AMPM">
+				<option value=" ">(blank)</option>
+			</select>
+		</div>
+		<br><i>(no check = 24hr clock)</i>
+	</div>
+	<div id="timezone_div" class="moveable">
+		<input id="show_timezone" type="checkbox" value="timezone">Time Zone Name
+		<div class="separator_div">
+			<label for="separator_timezone" class="hd_formatter_label">Separator: </label>
+			<select id="separator_timezone">
+				<option value=" ">(blank)</option>
+			</select>
+		</div>
+	</div>
+	<div id="offset_div"class="moveable">
+		<input id="show_offset" type="checkbox" value="offset">Time Zone Offset
+		<div class="separator_div">
+			<label for="separator_offset" class="hd_formatter_label">Separator: </label>
+			<select id="separator_offset">
+				<option value=" ">(blank)</option>
+				<option value="">(none)</option>
+			</select>
+		</div>
+	</div>
+	<div id="map-canvas"></div>
+	<button class="arrow" type="button" id="arrow-north"></button>
+	<button class="arrow" type="button" id="arrow-south"></button>
+	<button class="arrow" type="button" id="arrow-east"></button>
+	<button class="arrow" type="button" id="arrow-west"></button>
+	<button class="arrow" type="button" id="arrow-northeast"></button>
+	<button class="arrow" type="button" id="arrow-northwest"></button>
+	<button class="arrow" type="button" id="arrow-southeast"></button>
+	<button class="arrow" type="button" id="arrow-southwest"></button>
+	<div id="login_or_welcome">
+		<div id="welcome_back_dialog" title="Hello" display="none">
+		</div>
+		<div id="login_or_create_dialog" title="Hello" >
+			<label for="username">User Name: </label><input id="username" type="text" required />
+			<div class="line2 errorMessage"><p></p></div>
+			<a href="#" id="forgot_username" class="forgot">Forgot my username</a>
+			<div width="95%">
+				<label for="password">Optional Password: </label><input type="password" id="password" />
+				<div class="line2 errorMessage"><p></p></div>
+			</div>
+			<a href="#" id="forgot_password" class="forgot">Forgot my password</a>
+		</div>
+	</div>
+	<div id="edit_user">
+		<label for="edit_user_pwd1" class="event_header_label">Password: </label><input type="password" id="edit_user_pwd1" class="event_header_input" />
+		<div class="line2 errorMessage"><p></p></div>
+		<label for="edit_user_pwd2" class="event_header_label">Password (repeat): </label><input type="password" id="edit_user_pwd2" class="event_header_input" />
+		<div class="line2 errorMessage"><p></p></div>
+		<label for="edit_user_email1" class="event_header_label">Email: </label><input type="text" id="edit_user_email1" class="event_header_input" />
+		<div class="line2 errorMessage"><p></p></div>
+		<label for="edit_user_email2" class="event_header_label">Email (repeat): </label><input type="text" id="edit_user_email2" class="event_header_input" />
+		<div class="line2 errorMessage"><p></p></div>
+		<div class="event_header_fullwidth">
+			<label for="edit_user_option_in">I</label><input type="radio" name="edit_user_opt_in_option" value="yes" id="edit_user_opt_in_yes" checked="checked" />do<span>     </span><input type="radio" name="edit_user_opt_in_option" value="no" id="edit_user_opt_in_no" />do not wish to get History in Motion emails
+		</div>
+		<label for="edit_user_year" class="event_header_label">Year of Birth: </label><select id="edit_user_year"></select>
+		<div class="line2 errorMessage"><p></p></div>
+		<label for="edit_user_role" class="event_header_label">Your Role: </label>
+		<select id="edit_user_role">
+			<option value="0">Professor (college or university)</option>
+			<option value="1">Researcher/graduate student</option>
+			<option value="2">Teacher (high school)</option>
+			<option value="3">Teacher (middle/junior high school)</option>
+			<option value="4">Teacher (elementary school)</option> 
+			<option value="5">History enthusiast/lifelong learner</option>
+			<option value="6">Student (college)</option>
+			<option value="7">Student (high school)</option>
+			<option value="8">Student (middle/junior high school)</option>
+			<option value="9">Student (elementary school)</option>
+			<option value="10">Other</option>
+		</select>
+		<div class="line2 errorMessage"><p></p></div>
+		<label for="edit_user_reason" class="event_header_label">Main reason for interest in HiM: </label>
+		<select id="edit_user_reasons">
+			<option value = "0">Creating scenario(s) for National History Day project</option>
+			<option value = "1">Creating scenario(s) for other school/research project</option>
+			<option value = "2">Creating scenario(s) for personal use/interest</option>
+			<option value = "3">Creating scenario(s) to share with others</option>
+			<option value = "4">Viewing scenario(s) as part of assigned study/project</option>
+			<option value = "5">Viewing scenario(s) for personal use/interest</option>
+			<option value = "6">Other</option>
+		</select>
+		<div class="line2 errorMessage"><p></p></div>
+	</div>
+	<div id="new_scenario_accordion">
+		<h3 id='sc_title_div'>Scenario Title & Defaults<button id="sc_save_button">Save</button><button id="sc_cancel_button">Cancel</button></h3>
+		<div class="sctext">
+			<div id="scenario_div">
+				<label for="scenario" class="scenario_input_label" >Scenario name: </label><input type="text" id="scenario" class="scenario_input_field" />
+			</div>
+			<div class="line2 errorMessage"><p></p></div>
+			<div id="copyright_div">
+				<label for="copyright" class="scenario_input_label" >Copyright: </label><input type="text" id="copyright" class="scenario_input_field" />
+			</div>
+			<div class="line2 errorMessage"><p>    </p></div>
+			<div class="not_elem">
+				<label for="era_default_creation" class="scenario_input_label" >Default Era: </label><input type="radio" name="default_era_option_creation" value="BCE" id="default_BCE_creation" />BCE<span>     </span><input type="radio" name="default_era_option_creation" value="CE" checked="checked" id="default_CE_creation" />CE
+				<div class="line2 errorMessage"><p>    </p></div>
+				<label for="default_time_zone_creation" class="scenario_input_label_long" >Default Time Zone: </label><select id="default_time_zone_creation" class="scenario_input_field_short"></select>
+				<div class="line2 errorMessage"><p></p></div>
+			</div>
+			<div>
+				<br>
+				<label for="historical_map_choice" class="scenario_input_label_long edit_only" >Historical Map: </label><select id="historical_map_to_edit" class="scenario_input_field_short edit_only"></select>
+			</div>
+		</div>
+		<h3 id='sc_start_desc_div'>Description for Scenario Start</h3>
+		<div class="sctext">
+			<button id='sc_start_desc_button_bold' type='button'><b>B</b></button>
+			<button id='sc_start_desc_button_italic' type='button'><i>I</i></button>
+			<button id='sc_start_desc_button_underline' type='button'><u>U</u></button>
+			<button id='sc_start_desc_button_image' type='button'>Image URL</button>
+			<button id='sc_start_desc_button_image_file' type='button'>Image File</button>
+			<button id='sc_start_desc_button_link' type='button'><u>Link</u></button>
+			<p></p>
+			<textarea id="sc_start_desc" rows="10" cols="40"></textarea>
+			<br>
+			<div id="sc_start_soundtrack_div">
+				<button id='sc_start_desc_button_soundtrack'>Show or Choose Soundtrack</button>
+			</div>	
+		</div>
+		<h3 id='sc_end_desc_div'>Description for Scenario End</h3>
+		<div class="sctext">
+			<button id='sc_end_desc_button_bold' type='button'><b>B</b></button>
+			<button id='sc_end_desc_button_italic' type='button'><i>I</i></button>
+			<button id='sc_end_desc_button_underline' type='button'><u>U</u></button>
+			<button id='sc_end_desc_button_image' type='button'>Image URL</button>
+			<button id='sc_end_desc_button_image_file' type='button'>Image File</button>
+			<button id='sc_end_desc_button_link' type='button'><u>Link</u></button>
+			<p></p>
+			<textarea id="sc_end_desc" rows="10" cols="40"></textarea>
+			<br>
+			<div id="sc_end_soundtrack_div">
+				<button id='sc_end_desc_button_soundtrack'>Show or Choose Soundtrack</button>
+			</div>
+		</div>
+	</div>
+	<div id="new_scenario_map" title="Choose Scenario Map and Center">
+		<ol>
+			<li>Choose a historical map, if there is one that suits your purpose.</li>
+			<li>Drag and zoom the map to view where your scenario will start.</li>
+			<li>Click <b>OK</b> when the map is where you want it to be.</li>
+		</ol>
+		<br>
+		<label for="historical_map_choice" class="scenario_input_label" >Historical Map: </label><select id="historical_map_creation"></select>
+	</div>
+	<div id="save_as_scenario_dialog" title="Save Scenario" >
+		<div id="save_as_scenario_div">
+			<label for="save_as_scenario" class="scenario_input_label" >Scenario name: </label><input type="text" id="save_as_scenario" class="scenario_input_field" />
+		</div>
+		<div class="line2 errorMessage"><p></p></div>
+	</div>
+	<div id='event_accordion'>
+			<h3 id='event_location'>Location & Title<button id="event_save_button">Save</button><button id="event_cancel_button">Cancel</button><button id="event_delete_button">Delete</button></h3>
+			<div class="mytext">
+				<label for="event_title" class="event_header_label">Title: </label><input type="text" id="event_title" class="event_header_input" />
+				<div class="line2 errorMessage"><p></p></div>
+				<div id="event_latLng_div">
+					<label for="event_lat" class="event_header_label">Latitude: </label><input type="text" id="event_lat" class="event_header_input" />
+					<div class="line2 errorMessage"><p></p></div>
+					<label for="event_lng" class="event_header_label">Longitude: </label><input type="text" id="event_lng" class="event_header_input" />
+					<div class="line2 errorMessage"><p></p></div>
+				</div>	
+				<div id="event_icon_div">
+					<label for="event_icon" class="event_header_label">Icon File: </label><input type="text" id="event_icon" class="event_header_input" />
+					<div class="line2 errorMessage"><p></p></div>
+					<br>
+					<button id='event_icon_button'>Pick an Icon</button>
+				</div>	
+				<label for="event_timing_options" class="event_header_label">Has dates? </label><input type="radio" name="event_timing_option" value="timed_event" id="timed_event" checked="checked" />Yes<span>     </span><input type="radio" name="event_timing_option" value="timeless_location" id="timeless_location" />No
+			</div>
+			<h3 id='event_description'>Description</h3>
+			<div class="mytext">
+				<button id='button_bold' type='button'><b>B</b></button>
+				<button id='button_italic' type='button'><i>I</i></button>
+				<button id='button_underline' type='button'><u>U</u></button>
+				<button id='button_image' type='button'>Image URL</button>
+				<button id='button_image_file' type='button'>Image File</button>
+				<button id='button_link' type='button'><u>Link</u></button>
+				<p></p>
+				<textarea id="event_desc" rows="10" cols="40"></textarea>
+			</div>
+			<h3 id='event_start'>Start Time</h3>
+			<div class="mytext">
+				<div id="event_start_date_div">
+					<div id="event_start_date_input_div">
+						<label for="event_start_date" class="event_header_label">Start Date: </label><input type="text" id="event_start_date" class="event_header_input" />
+					</div>
+					<div class="line2 errorMessage"><p></p></div>
+					<div class="not_elem">
+						<label for="event_start_era_options" class="event_header_label">Era: </label><input type="radio" name="start_era_option" value="BCE" id="start_BCE" />BCE<span>     </span><input type="radio" name="start_era_option" value="CE" checked="checked" id="start_CE" />CE
+						<div class="line2 errorMessage"><p></p></div>
+						<label for="event_start_era_specificity" class="event_header_label">Specificity: </label><input type="radio" name="start_specificity_option" value="circa" id="start_circa" />Circa this date<span>     </span><input type="radio" name="start_specificity_option" value="exact" checked="checked" id="start_exact" />Exact date
+						<div class="line2 errorMessage"><p></p></div>
+					</div>
+					<label for="event_start_time" class="event_header_label">Start Time: </label><input type="text" id="event_start_time" class="event_header_input" /> (hh:mm:ss)
+					<div class="line2 errorMessage"><p></p></div>
+					<label for="event_start_time_options" class="event_header_label">AM or PM: </label><input type="radio" name="start_time_of_day_option" value="AM" id="start_AM" checked="checked" />AM<span>     </span><input type="radio" name="start_time_of_day_option" value="PM" id="start_PM" />PM
+					<div class="line2 errorMessage"><p></p></div>
+					<div class="not_elem">
+						<label for="event_start_time_zone" class="event_header_label">Time Zone: </label><select id="event_start_time_zone"></select>
+						<div class="line2 errorMessage"><p></p></div>
+					</div>
+				</div>
+			</div>
+			<h3 id='event_end'>End Time</h3>
+			<div class="mytext">
+				<div id="event_end_date_div">
+					<div id="event_end_date_input_div">
+						<label for="event_end_date" class="event_header_label">End Date: </label><input type="text" id="event_end_date" class="event_header_input" />
+					</div>
+					<div class="line2 errorMessage"><p></p></div>
+					<div class="not_elem">
+						<label for="event_end_era_options" class="event_header_label">Era: </label><input type="radio" name="end_era_option" value="BCE" id="end_BCE" />BCE<span>     </span><input type="radio" name="end_era_option" value="CE" checked="checked" id="end_CE"/>CE
+						<div class="line2 errorMessage"><p></p></div>
+						<label for="event_end_era_specificity" class="event_header_label">Specificity: </label><input type="radio" name="end_specificity_option" value="circa" id="end_circa" />Circa this date<span>     </span><input type="radio" name="end_specificity_option" value="exact" checked="checked" id="end_exact" />Exact date
+						<div class="line2 errorMessage"><p></p></div>
+					</div>
+					<label for="event_end_time" class="event_header_label">End Time: </label><input type="text" id="event_end_time" class="event_header_input" /> (hh:mm:ss)
+					<div class="line2 errorMessage"><p></p></div>
+					<label for="event_end_time_options" class="event_header_label">AM or PM: </label><input type="radio" name="end_time_of_day_option" value="AM" checked="checked" id="end_AM" />AM<span>     </span><input type="radio" name="end_time_of_day_option" value="PM" id="end_PM" />PM
+					<div class="line2 errorMessage"><p></p></div>
+					<div class="not_elem">
+						<label for="event_end_time_zone" class="event_header_label" id="event_end_time_zone_label">Time Zone: </label><select id="event_end_time_zone"></select>
+						<div class="line2 errorMessage"><p></p></div>
+					</div>
+				</div>
+			</div>
+			<h3 id='event_style_and_color'>Style & Color</h3>
+			<div class="mytext">
+				<div id="event_style">
+					<label for="event_line_color" class="tl_header_label_long">Line Color: </label><input id="event_line_color" class="tl_header_input_short color" />
+					<div class="line2 errorMessage"><p></p></div>
+					<label for="event_line_width" class="tl_header_label_long">Line Width: </label>
+					<div>
+						<select id="event_line_width" class="tl_header_input_short">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</select>
+					</div>
+					<div class="line2 errorMessage"><p></p></div>
+					<label for="event_line_opacity" class="tl_header_label_long">Line Opacity: </label>
+					<div>
+						<select id="event_line_opacity" class="tl_header_input_short">
+							<option>0.1</option>
+							<option>0.2</option>
+							<option>0.3</option>
+							<option>0.4</option>
+							<option>0.5</option>
+							<option>0.6</option>
+							<option>0.7</option>
+							<option>0.8</option>
+							<option>0.9</option>
+							<option>1.0</option>
+						</select>
+					</div>
+					<div class="line2 errorMessage"><p></p></div>
+					<div id="event_area_div">
+						<label for="event_area_color" class="tl_header_label_long">Area Fill Color: </label><input id="event_area_color" class="tl_header_input_short color" />
+						<div class="line2 errorMessage"><p></p></div>
+						<label for="event_area_opacity" class="tl_header_label_long">Area Fill Opacity: </label>
+						<div>
+						<select id="event_area_opacity" class="tl_header_input_short">
+							<option>0.1</option>
+							<option>0.2</option>
+							<option>0.3</option>
+							<option>0.4</option>
+							<option>0.5</option>
+							<option>0.6</option>
+							<option>0.7</option>
+							<option>0.8</option>
+							<option>0.9</option>
+							<option>1.0</option>
+						</select>
+					</div>
+						<div class="line2 errorMessage"><p></p></div>
+					</div>
+				</div>
+			</div>
+			<h3 id='event_animation'>Animation</h3>
+			<div class="mytext">
+				<div id="event_animation_div">
+					<div id="path_animation_choices_div">
+						<label for="event_animation_icon_style" class="tl_header_label">Icon Style: </label>
+						<div id="event_animation_icon_style_div">
+							<select id="event_animation_icon_style" class="tl_header_input">
+								<option>Arrow (entire path only)</option>
+								<option>Placemark</option>
+								<option>Custom icon</option>
+								<option>No icon</option>
+							</select>
+						</div>
+						<div class="line2 errorMessage"><p></p></div>
+						<label for="event_animation_icon" class="event_header_label">Icon File: </label><input type="text" id="event_animation_icon" class="event_header_input" />
+						<div class="line2 errorMessage"><p></p></div>
+						<label for="event_animation_path_types" class="tl_header_label">Path Display: </label>
+						<div>
+							<select id="event_animation_path" class="tl_header_input">
+								<option>Entire path</option>
+								<option>Past only</option>
+								<option>Future only</option>
+							</select>
+						</div>
+						<div class="line2 errorMessage"><p></p></div>
+						<br>
+						<button id='path_animation_icon_button'>Pick an Icon</button>
+					</div>
+					<div id="area_animation_choices_div">
+						<label for="area_animation_target" class="tl_header_label">Target Area Event: </label>
+						<div id="area_animation_target_div">
+							<select id="area_animation_target" class="tl_header_input">
+							</select>
+						</div>
+						<div class="line2 errorMessage"><p></p></div>
+						<br><br><br>
+						<input type="checkbox" id="area_animation_fill" /> Fill path as area moves to target?
+					</div>
+				</div>
+			</div>
+	</div>
+	<div id='timeline_accordion'>
+			<h3 id='tl_title_div'>Title<button id="tl_save_button">Save</button><button id="tl_cancel_button">Cancel</button><button id="tl_delete_button">Delete</button></h3>
+			<div class="mytext">
+				<label for="tl_title" class="tl_header_label">Title: </label><input type="text" id="tl_title" class="tl_header_input" />
+				<div class="line2 errorMessage"><p></p></div>
+				<div>
+					<input type="checkbox" id="tl_enabled" /> Enable timeline?<br>
+					<input type="checkbox" id="tl_display_path_event_names" /> Show names of path events?<br>
+				</div>
+			</div>
+			<h3 id='tl_start'>Start Time</h3>
+			<div class="mytext">
+				<div id="tl_start_date_div">
+					<div id="tl_start_date_input_div">
+						<label for="tl_start_date" class="tl_header_label">Start Date: </label><input type="text" id="tl_start_date" class="tl_header_input" />
+					</div>
+					<div class="line2 errorMessage"><p></p></div>
+					<div class="not_elem">
+						<label for="tl_start_era_options" class="tl_header_label">Era: </label><input type="radio" name="tl_start_era_option" value="BCE" id="tl_start_BCE" />BCE<span>     </span><input type="radio" name="tl_start_era_option" value="CE" checked="checked" id="tl_start_CE" />CE
+						<div class="line2 errorMessage"><p></p></div>
+					</div>
+					<label for="tl_start_time" class="tl_header_label">Start Time: </label><input type="text" id="tl_start_time" class="tl_header_input" /> (hh:mm:ss)
+					<div class="line2 errorMessage"><p></p></div>
+					<label for="tl_start_time_options" class="tl_header_label">AM or PM: </label><input type="radio" name="tl_start_time_of_day_option" value="AM" id="tl_start_AM" checked="checked" />AM<span>     </span><input type="radio" name="tl_start_time_of_day_option" value="PM" id="tl_start_PM" />PM
+					<div class="line2 errorMessage"><p></p></div>
+					<div class="not_elem">
+						<label for="tl_start_time_zone" class="tl_header_label">Time Zone: </label><select id="tl_start_time_zone"></select>
+						<div class="line2 errorMessage"><p></p></div>
+					</div>
+				</div>
+			</div>
+			<h3 id='tl_end'>End Time</h3>
+			<div class="mytext">
+				<div id="tl_end_date_div">
+					<div id="tl_end_date_input_div">
+						<label for="tl_end_date" class="tl_header_label">End Date: </label><input type="text" id="tl_end_date" class="tl_header_input" />
+					</div>
+					<div class="line2 errorMessage"><p></p></div>
+					<div class="not_elem">
+						<label for="tl_end_era_options" class="tl_header_label">Era: </label><input type="radio" name="tl_end_era_option" value="BCE" id="tl_end_BCE" />BCE<span>     </span><input type="radio" name="tl_end_era_option" value="CE" checked="checked" id="tl_end_CE"/>CE
+						<div class="line2 errorMessage"><p></p></div>
+					</div>
+					<label for="tl_end_time" class="tl_header_label">End Time: </label><input type="text" id="tl_end_time" class="tl_header_input" /> (hh:mm:ss)
+					<div class="line2 errorMessage"><p></p></div>
+					<label for="tl_end_time_options" class="tl_header_label">AM or PM: </label><input type="radio" name="tl_end_time_of_day_option" value="AM" checked="checked" id="tl_end_AM" />AM<span>     </span><input type="radio" name="tl_end_time_of_day_option" value="PM" id="tl_end_PM" />PM
+					<div class="line2 errorMessage"><p></p></div>
+				</div>
+			</div>
+			<h3 id='tl_clock_rate'>Clock Rate</h3>
+			<div class="mytext">
+				<div id="tl_clock_rate_div">
+					<p>Specify the number of Historical Time Units (HTUs) you want to pass in the number of Wall-Clock Units (WCUs).</p><br>
+					<label for="tl_clock_rate_number_htu" class="tl_header_label_long">No. of HTUs: </label><input type="text" id="tl_clock_rate_number_htu" class="tl_header_input_short" />
+					<div class="line2 errorMessage"><p></p></div>
+					<label for="tl_clock_rate_htu" class="tl_header_label_long">Historical Time Unit: </label>
+					<div>
+						<select id="tl_clock_rate_htu" class="tl_header_input_short">
+							<option value="second">Second</option>
+							<option value="minute">Minute</option>
+							<option value="hour">Hour</option>
+							<option value="day">Day</option>
+							<option value="week">Week</option>
+							<option value="month">Month</option>
+							<option value="year">Year</option>
+							<option value="decade">Decade</option>
+							<option value="century">Century</option>
+							<option value="millenium">Millenium</option>
+						</select>
+					</div>
+					<div class="line2 errorMessage"><p></p></div>
+					<label for="tl_clock_rate_number_wcu" class="tl_header_label_long">No. of WCUs: </label><input type="text" id="tl_clock_rate_number_wcu" class="tl_header_input_short" />
+					<div class="line2 errorMessage"><br><p></p></div>
+					<label for="tl_clock_rate_wcu" class="tl_header_label_long">Wall-Clock Unit: </label>
+					<div>
+						<select id="tl_clock_rate_wcu" class="tl_header_input_short">
+							<option value="second">Second</option>
+							<option value="minute">Minute</option>
+						</select>
+					</div>
+					<div class="line2 errorMessage"><p></p></div>
+				</div>
+			</div>
+			<h3 id='tl_start_desc_div'>Description for Timeline Start</h3>
+			<div class="mytext">
+				<button id='tl_start_desc_button_bold' type='button'><b>B</b></button>
+				<button id='tl_start_desc_button_italic' type='button'><i>I</i></button>
+				<button id='tl_start_desc_button_underline' type='button'><u>U</u></button>
+				<button id='tl_start_desc_button_image' type='button'>Image URL</button>
+				<button id='tl_start_desc_button_image_file' type='button'>Image File</button>
+				<button id='tl_start_desc_button_link' type='button'><u>Link</u></button>
+				<p></p>
+				<textarea id="tl_start_desc" rows="10" cols="35"></textarea>
+				<br>
+				<div id="tl_start_soundtrack_div">
+					<button id='tl_start_desc_button_soundtrack'>Show or Choose Soundtrack</button>
+				</div>	
+			</div>
+			<h3 id='tl_end_desc_div'>Description for Timeline End</h3>
+			<div class="mytext">
+				<button id='tl_end_desc_button_bold' type='button'><b>B</b></button>
+				<button id='tl_end_desc_button_italic' type='button'><i>I</i></button>
+				<button id='tl_end_desc_button_underline' type='button'><u>U</u></button>
+				<button id='tl_end_desc_button_image' type='button'>Image URL</button>
+				<button id='tl_end_desc_button_image_file' type='button'>Image File</button>
+				<button id='tl_end_desc_button_link' type='button'><u>Link</u></button>
+				<p></p>
+				<textarea id="tl_end_desc" rows="10" cols="35"></textarea>
+				<br>
+				<div id="tl_end_soundtrack_div">
+					<button id='tl_end_desc_button_soundtrack'>Show or Choose Soundtrack</button>
+				</div>	
+			</div>
+	</div>
+	<div id="URL_dialog">
+		<div id="URL_input_div">
+			<label for="URL" id="URL_input_label">URL:</label><input type="text" id="URL_input" />
+			<div class="line2 errorMessage"><p></p></div>
+		</div>
+		<div id="image_file_input_div">
+			<input type="file" id="file_input" name="files[]" />
+			<div class="line2 errorMessage"><p></p></div>
+		</div>
+		<div id="link_text_div">
+			<label for="link_text" id="link_text_label">Text:</label><input type="text" id="link_text_input" />
+			<div class="line2 errorMessage"><p></p></div>
+		</div>
+		<div id="embed_code_div">
+			<textarea id="embed_code_input" rows="10" cols="40"></textarea>
+			<div class="line2 errorMessage"><p></p></div>
+		</div>
+	</div>
+	<div id="toolbar_dialog" title="Tool Bar">
+		<button id="tool_point_event"></button>
+		<button id="tool_path_event"></button>
+		<button id="tool_area_event"></button>
+		<button id="tool_timeline"></button>
+		<button id="tool_edit_event"></button>
+		<button id="tool_edit_timeline"></button>
+	</div>
+	<div id="scenario_import" >
+		<label for="scenario" class="scenario_input_label" >Scenario name: </label><input type="text" id="import_scenario_name" class="scenario_input_field" />
+		<div class="line2 errorMessage"><p></p></div>
+		<label for="scenario" class="scenario_input_label" >Scenario data:</label><br><textarea id="import_scenario_data" rows="10" cols="45"></textarea>
+		<div class="line2 errorMessage"><p></p></div>
+	</div>
+	<div id="icon_dialog_box">
+		<div id="icon_tabs">  <!--Tab order and related div order must be the same!  HiM exploits this order.-->
+			<ul>
+				<li><a href="#icons_HiM">Common Icons</a></li>
+				<li><a href="#icons_MyIcons">My Icons</a></li>
+				<li><a href="#icons_SSIL">Scenario Icons</a></li>
+			</ul>
+			<div id="icons_HiM"></div>
+			<div id="icons_MyIcons"></div>
+			<div id="icons_SSIL"></div>
+		</div>
+		<input type="file" id="icon_add_files" name="files[]"  />
+		<div class="line2 errorMessage"><p></p></div>
+	</div>
+	<div id='map_dialog' title='Add Historical Map'>
+		<label for="map_title" class="event_header_label">Title: </label><input type="text" id="map_title" class="event_header_input" />
+		<div class="line2 errorMessage"><p></p></div>
+		<label for="map_desc" class="event_header_label">Description: </label><textarea id="map_desc" rows="10" cols="40"></textarea>
+		<label for="map_manager" class="event_header_label">Map Manager: </label>
+		<select id="map_manager" class="event_header_input">
+			<option value="Choose">Choose:</option>
+			<option value="GME">Google Maps Engine</option>
+			<option value="MapTiler">MapTiler</option>
+		</select>
+		<div id="GME_inputs_div">
+			<label for="map_GME_ID" class="event_header_label">Google Map ID: </label><input type="text" id="map_GME_ID" class="event_header_input" />
+			<div class="line2 errorMessage"><p></p></div>
+			<label for="map_GME_layer_key" class="event_header_label">Layer Key: </label><input type="text" id="map_GME_layer_key" class="event_header_input" />
+			<div class="line2 errorMessage"><p></p></div>
+			<label for="map_initial_zoom" class="event_header_label">Initial Zoom: </label>
+			<select id="map_initial_zoom" class="event_header_input">
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+				<option>6</option>
+				<option>7</option>
+				<option>8</option>
+				<option>9</option>
+				<option>10</option>
+				<option>11</option>
+				<option>12</option>
+				<option>13</option>
+				<option>14</option>
+				<option>15</option>
+				<option>16</option>
+			</select>
+			<label for="map_lat" class="event_header_label">Latitude: </label><input type="text" id="map_lat" class="event_header_input" />
+			<div class="line2 errorMessage"><p></p></div>
+			<label for="map_lng" class="event_header_label">Longitude: </label><input type="text" id="map_lng" class="event_header_input" />
+			<div class="line2 errorMessage"><p></p></div>
+		</div>
+		<div id="MapTiler_inputs_div">
+			<div id="map_zip_div">
+				<label for="map_zip" class="event_header_label">Zip file: </label><input type="file" id="map_zip" name="files[]" class="event_header_input"   />
+			</div>
+			<div class="line2 errorMessage"><p></p></div>
+		</div>
+	</div>
+	<div id=scenario_opening_context class=context_display></div>
+	<div id=scenario_closing_context class=context_display></div>
+	<div id=timeline_opening_context class=context_display></div>
+	<div id=timeline_closing_context class=context_display></div>
+	<div id="soundtrack_source_selection_div" title="Select Soundtrack Source Type">
+		<b><u>Current soundtrack:</u></b><br><br>
+		<i><span id="soundtrack_display_current"></span></i><br><br>
+		<b><u>Pending soundtrack selection:</u></b><br><br>
+		<i><span id="soundtrack_display_pending"></span></i><br><br>
+		<select id="soundtrack_source_selection">
+			<option value="None">Choose source</option>
+			<option value="Video upload">Video file (upload)</option>
+			<option value="YouTube">Video embed code (YouTube)</option>
+			<option value="Vimeo">Video embed code (Vimeo)</option>
+			<option value="Audio upload">Audio file (upload)</option>
+			<option value="Audio URL">Audio URL</option>
+			<option value="Remove">No soundtrack</option>
+		</select>
+	</div>
+</body>
+</html>

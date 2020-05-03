@@ -1,0 +1,351 @@
+@import url("CSS3_menu_style.css");
+@import url("../third_party/jquery-ui-1.10.3.custom.css");
+
+._css3m{display:none}
+
+.framework {
+    display: block;
+    font-size: 11pt;
+    font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+    height: 40px;
+    color: #2779aa; /* Same color as Cupertino theme in jQuery UI */
+    background-color: #deedf7; /* Same color as Cupertino theme in jQuery UI */
+    position:relative;
+}
+
+#logo {
+    margin-left: 4px;
+    position: absolute;
+    top: 5px;
+    float: left;
+}
+
+#scenario_name {
+    font-style: italic;
+    font-weight: normal;
+    color: #2779aa;
+    border: 1px solid black;
+    margin-left: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    position: absolute;
+    top: 5px;
+    left: 70px;
+    float: left;
+}
+
+#current_time {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11pt;
+    color: #2779aa;
+    margin-left: 20px;
+    position: absolute;
+    top: 0px;
+    left: 660px;
+    width: 350px;
+    float: left;
+}
+
+#enclose-menu {
+    position:absolute;
+    display:inline;
+    left:440px;
+    top:5px;
+}
+
+#toolbar_button {
+    position:absolute;
+    display:inline;
+    left:725px;
+    height: 35px;
+}
+
+#toolbar_dialog {
+	display: none;
+}
+
+html, body, #map-canvas {
+    margin: 0;
+    padding: 0;
+    height: 95%;
+}
+
+#slider-box {
+    position: absolute;
+    top: 10px;
+    left: 360px;
+    width: 300px;
+}
+
+#Select_Timeline_Form {
+    padding-top: 5px;
+    width: 300px;
+}
+
+#play_button {
+    display:inline;
+    height: 35px;
+    position: absolute;
+    top: 0px;
+    left: 300px;
+}
+
+#login_or_create_dialog, #username, #password {
+	display: none;
+}
+
+#login_or_create_dialog input {
+	width: 160px;
+	text-align: left;
+	float: right
+}
+
+.forgot {
+	width: 350px;
+	float: right;
+	text-align: right;
+}
+
+#login_or_create_dialog label {
+	width: 200px
+}
+
+.line2 {
+	display: block
+}
+
+#new_scenario, #edit_scenario, #save_as_scenario_dialog, #new_scenario_map {
+	display: none;
+}
+
+.scenario_input_field  {
+	width: 65%;
+	text-align: left;
+	float: left
+}
+
+.scenario_input_field_short {
+	float: left;
+	width: 50%
+}
+
+.scenario_input_label {
+	float: left;
+	width: 30%
+}
+
+.scenario_input_label_long {
+	float: left;
+	width: 50%
+}
+
+option {
+	font-size: 11pt;
+    font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+}
+
+#event_accordion, #timeline_accordion {
+			width: 500px;
+			position: fixed;
+			display: none;
+			top: 12%;
+			left: 48%
+}
+		
+#new_scenario_accordion {
+			width: 550px;
+			position: fixed;
+			display: none;
+			top: 12%;
+			left: 48%
+}
+		
+.sctext {
+	width: 470px;
+}
+		
+#event_save_button, #event_cancel_button, #event_delete_button, #tl_save_button, #tl_cancel_button, #tl_delete_button, #sc_save_button, #sc_cancel_button {
+	float: right;
+	top: -8px
+}
+
+.event_header_input, .tl_header_input {
+	width: 65%;
+	text-align: left;
+	float: left
+}
+
+.event_header_label, .tl_header_label {
+	float: left;
+	width: 30%
+}
+
+.event_header_fullwidth {
+	float: left;
+	width: 95%
+}
+
+.tl_header_input_short {
+	width: 50%;
+	text-align: left;
+	float: left
+}
+
+.tl_header_label_long {
+	float: left;
+	width: 45%
+}
+
+.mytext {
+	width: 422px;
+}
+
+#event_desc {
+	height: 200px;
+	width: 400px;
+}
+
+#button_link {
+	color: blue;
+}
+
+#URL_dialog {
+	display: none;
+	width: 400px;
+}
+
+#URL_dialog label {
+	width: 15%;
+}
+
+#URL_dialog input {
+	width: 85%;
+	text-align: left;
+	float: right
+}
+
+#event_start_date_div, #tl_start_date_div {
+	display: none;
+}
+
+#event_start_date, #event_start_time, #event_end_date, #event_end_time, #tl_start_date, #tl_start_time, #tl_end_date, #tl_end_time {
+	width: 30%
+}
+
+#event_style_and_color, #event_style {
+	display: none;
+}
+
+.arrow {
+	display: none;
+	position: fixed;
+}
+
+#arrow-north {
+	top: 15%;
+	left: 50%	
+}
+
+#arrow-east {
+	top: 50%;
+	left: 95%	
+}
+
+#arrow-south {
+	top: 95%;
+	left: 50%	
+}
+
+#arrow-west {
+	top: 50%;
+	left: 2%	
+}
+
+#arrow-northeast {
+	top: 15%;
+	left: 95%	
+}
+
+#arrow-southeast {
+	top: 95%;
+	left: 95%	
+}
+
+#arrow-northwest {
+	top: 15%;
+	left: 2%	
+}
+
+#arrow-southwest {
+	top: 95%;
+	left: 2%	
+}
+
+.hd_formatter_label {
+	float: left;
+	width: 30%
+}
+
+#hd_formatter_div {
+	display: none;
+}
+		
+.moveable {
+	border-color: black;
+	border-width: 2px;
+	border-style: dotted;
+	display: none;
+}
+
+.format_checkbox {
+	float: left;
+	width: 5%
+}
+
+.separator_div {
+	float: right;
+	width: 60%
+}
+
+.format_label {
+	text-align: left;
+}
+
+.format_input  {
+	text-align: left;
+}
+
+.empty_space {
+	border: medium dotted blue;
+	height: 25px;
+	margin: 4px;
+}
+
+#scenario_import, #edit_user {
+	display: none;
+}
+
+#icon_dialog_box {
+	display: none;
+}
+
+.thumb {
+	height: 75px;
+	margin: 10px 5px 0 0;
+}
+
+#map_dialog {
+	display: none;
+}
+
+.context_display {
+	font-size: 10pt;
+    font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+	display: none;
+	overflow: auto;
+}
+
+#soundtrack_source_selection_div {
+	display: none;
+}
