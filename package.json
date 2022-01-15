@@ -36,7 +36,7 @@
   "gitHead": "90fd58e343c29e54fc1d4e19036595500b2bdc21",
   "devDependencies": {
     "requirejs": "^2.3.6",
-    "shelljs": "^0.8.3",
+    "shelljs": "^0.8.5",
     "standard": "^14.3.1"
   }
 }
