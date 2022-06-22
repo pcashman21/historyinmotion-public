@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "adm-zip": "^0.4.14",
-    "async": "^3.2.0",
+    "async": "^3.2.2",
     "cookie-parser": "^1.4.4",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
